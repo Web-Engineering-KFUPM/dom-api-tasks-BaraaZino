@@ -122,9 +122,9 @@ async function loadData1() {
     const temp = data.main.temp;
     const hum = data.main.humidity;  
     const wind = data.wind.speed;     
-    document.getElementById("t4-temp").innerHTML = temp;
-    document.getElementById("t4-hum").innerHTML = hum;
-    document.getElementById("t4-wind").innerHTML = wind;
+    document.getElementById("t4-temp").innerHTML = temp+" °C";
+    document.getElementById("t4-hum").innerHTML = hum+" %";
+    document.getElementById("t4-wind").innerHTML = wind+"m/s";
 
   } catch (err) {
 
