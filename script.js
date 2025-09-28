@@ -19,7 +19,8 @@ inside the <p> element with id="t1-msg".
 💡 Hint:
 document.getElementById("t1-msg").innerHTML = "Hello, World!";
 */
- 
+document.getElementById("t1-msg").innerHTML = "Hello, World!";
+
 
 /*  
 =======================================
@@ -40,7 +41,10 @@ button.addEventListener("click", function () {
     // change text here
 });
 */
- 
+const button = document.getElementById("t2-btn")
+ button.addEventListener("click", function () {
+    document.getElementById("t2-btn").innerHTML = "You clicked the button!";
+});
 
 /*  
 =======================================
@@ -68,7 +72,23 @@ Use:
 data.content   // the quote text
 data.author    // the author
 */
- 
+async function loadData() {
+  try {
+    const res  = await fetch("https://dummyjson.com/quotes/random");
+    if (!res.ok) throw new Error("HTTP " + res.status);
+    const data = await res.json();
+    const text1 = data.quote;
+    const autho = data.author;
+    document.getElementById("t3-quote").textContent = "The quote: "+text1;
+    document.getElementById("t3-author").innerHTML = "The author: "+ autho;
+  } catch (err) {
+  }
+}
+
+ const button1 = document.getElementById("t3-loadQuote")
+ button1.addEventListener("click", function () {
+    loadData()
+});
 
 /*  
 =======================================
@@ -94,3 +114,25 @@ data.main.temp      → temperature (°C)
 data.main.humidity  → humidity (%)
 data.wind.speed     → wind speed (m/s)
 */
+async function loadData1() {
+  try {
+    const res  = await fetch("https://api.openweathermap.org/data/2.5/weather?q=Dammam&appid=eb143142d18ea165c434cdb10b3d83e6&units=metric");
+    if (!res.ok) throw new Error("HTTP " + res.status);
+    const data = await res.json();
+    const temp = data.main.temp;
+    const hum = data.main.humidity;  
+    const wind = data.wind.speed;     
+    document.getElementById("t4-temp").innerHTML = temp;
+    document.getElementById("t4-hum").innerHTML = hum;
+    document.getElementById("t4-wind").innerHTML = wind;
+
+  } catch (err) {
+
+  }
+
+}
+
+ const button2 = document.getElementById("t4-loadWx")
+ button2.addEventListener("click", function () {
+    loadData1()
+});
